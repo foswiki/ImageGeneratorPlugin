@@ -1,0 +1,2 @@
+Digest::HMAC,>=0,cpan,Required
+Image::Magick,>=7,cpan,Required

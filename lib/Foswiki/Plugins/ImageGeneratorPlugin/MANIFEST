@@ -1,0 +1,10 @@
+!noci
+data/System/ImageGeneratorPlugin.txt 0644
+lib/Foswiki/Plugins/ImageGeneratorPlugin/Config.spec 0644
+lib/Foswiki/Plugins/ImageGeneratorPlugin/Core.pm 0644
+lib/Foswiki/Plugins/ImageGeneratorPlugin/DEPENDENCIES 0644
+lib/Foswiki/Plugins/ImageGeneratorPlugin.pm 0644
+pub/System/ImageGeneratorPlugin/cache/README 0644
+pub/System/ImageGeneratorPlugin/example1.jpeg 0644
+pub/System/ImageGeneratorPlugin/example2.jpeg 0644
+pub/System/ImageGeneratorPlugin/example3.jpeg 0644

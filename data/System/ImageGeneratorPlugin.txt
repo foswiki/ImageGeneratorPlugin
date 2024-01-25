@@ -1,0 +1,132 @@
+%META:TOPICINFO{author="micha" comment="reprev" date="1706186222" format="1.1" reprev="2" version="4"}%
+---+!! %TOPIC%
+%FORMFIELD{"Description"}%
+
+%TOC%
+
+---++ Description
+
+%TOPIC% is a plugin that lets you generate images based on textual information such
+as a person's first and last name. It will then generate a kind of thumbnail or avatar
+image by taking the initials of the name and generate an image that is automatically 
+colored. The algorithm for that is the same as in the [[https://foswiki.org/Extensions/JQAutoColorContrib][JQAutoColorContrib]] extension.
+
+You type:
+
+<verbatim>
+%GENIMAGE{"Foswiki"}%
+</verbatim>
+
+You get:
+
+<img src="%ATTACHURLPATH%/example1.jpeg" width="150" height="150" />
+
+You type:
+
+<verbatim>
+%GENIMAGE{
+   "John Doe" 
+   form="initials" 
+   style="border-radius:50%"
+}%
+</verbatim>
+
+You get:
+
+<img src="%ATTACHURLPATH%/example3.jpeg" width="150" height="150" style="border-radius:50%" />
+
+In additon to the text input say "FW" an additional seed may be used to create further
+color variations.
+
+You type:
+
+<verbatim>
+%FORMATLIST{"0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23"
+   format="$percntGENIMAGE{\"Foswiki\" 
+               label=\"FW\" 
+               seed=\"$1\" 
+               title=\"$1\"
+               align=\"left\" 
+               width=\"100\" 
+               height=\"100\" 
+           }$percnt"
+   separator=""
+}%
+%CLEAR%
+</verbatim>
+
+You get:
+
+<img src="%ATTACHURLPATH%/example2.jpeg" alt="example" width="998" style="max-width:100%;height:auto" />
+
+---++ Syntax
+
+The =%GENIMAGE= makes takes the following arguments:
+
+| *Parameter* | *Description* | *Default* |
+| "...", text="..." | text source for the image; colors will be generated on its base | |
+| label="..." | explicit label to be displayed, if undefined will use the =from= parameter to generate a label from the =text= | _generated from text_ |
+| from="initials/firstletter" | specifies the way a label is generated from the =text=: mode "initials" will extract the first letters from each word in the text; mode "firstletter" will take the first letter of the text | firstletter |
+| seed="..." | any character sequence provided here will be added to the text while computing colors | |
+| width="..." | width of the image being generated | 150 |
+| height="..." | height of the image being generated | 150 |
+| font="..." | ttf font to be used | see configure, e.g. Helvetica |
+| huefrom="0..359" | start range of hues to be chosen from | 0 |
+| hueto="0..359" | end range of hues to be chosen from | 359 |
+| saturation="..." | one or more saturation values | 50, 60, 00 |
+| lightness="..." | one or more lightness values | 35, 50, 65, 80 |
+| light="..." | HLS values of a foreground color to be used on a dark background | 0, 0, 100 |
+| dark="..." | HLS value of a foreground color to be used on a light background | 0, 0, 0 |
+| class="..." | a css class | genImage |
+| style="..." | css styles | |
+| title="..." | title attribute of the img elemenent | |
+| alt="..." | alt attribute of the img elemenent | |
+| align="left/right/middle/top/bottom" | alignment of the img elemenent | |
+| format="..." | format string to render the result | <pre>&lt;img src="$url" \
+     width="$width" \
+     height="$height" \
+     $class \
+     $align \
+     $title \
+     $alt /&gt; </pre> |
+
+All colors are calculated in HLS space. While hashing the text a hue value is selected in the range specified by =huefrom= ... =hueto=.
+Lightness and staturation as selected in modulo fashion from the given list of values. The resulting background color
+is analyzed: if it is considered dark or light, a light on dark or dark on light backgrounds will be used as can be seen
+in the above examples.
+
+Hue values are between 0 and 359, lightness and saturation are on a scale between 0 and 100.
+
+The =format= parameter may contain the following variables:
+
+   * =$url=
+   * =$width=
+   * =$height=
+   * =$class=
+   * =$align=
+   * =$alt=
+
+---++ Installation Instructions
+%$INSTALL_INSTRUCTIONS%
+
+---++ Dependencies
+%$DEPENDENCIES%
+
+---++ Change History
+
+%TABLE{columnwidths="7em" tablewidth="100%"}%
+|  25 Jan 2024 | initial release |
+
+%META:FORM{name="PackageForm"}%
+%META:FIELD{name="Author" title="Author" value="Michael Daum"}%
+%META:FIELD{name="Version" title="Version" value="%25$VERSION%25"}%
+%META:FIELD{name="Release" title="Release" value="%25$RELEASE%25"}%
+%META:FIELD{name="Description" title="Description" value="%25$SHORTDESCRIPTION%25"}%
+%META:FIELD{name="Repository" title="Repository" value="https://github.com/foswiki/%25$ROOTMODULE%25"}%
+%META:FIELD{name="Copyright" title="Copyright" value="2022-2024, Michael Daum, All Rights Reserved"}%
+%META:FIELD{name="License" title="License" value="GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]])"}%
+%META:FIELD{name="Home" title="Home" value="http://foswiki.org/Extensions/%25$ROOTMODULE%25"}%
+%META:FIELD{name="Support" title="Support" value="http://foswiki.org/Support/%25$ROOTMODULE%25"}%
+%META:FILEATTACHMENT{name="example1.jpeg" attachment="picture-c8faf1f5359c51573406349e7424e3ba.jpeg" attr="" comment="" date="1665910876" moveby="micha" movedto="System.ImageGeneratorPlugin.example1.jpeg" movedwhen="1665910912" movefrom="System.ImageGeneratorPlugin.picture-c8faf1f5359c51573406349e7424e3ba.jpeg" size="1379" user="micha" version="1"}%
+%META:FILEATTACHMENT{name="example2.jpeg" attachment="example2.jpeg" attr="t" comment="" date="1665911168" size="46693" user="micha" version="2"}%
+%META:FILEATTACHMENT{name="example3.jpeg" attachment="example3.jpeg" attr="" comment="" date="1665913321" size="2133" user="micha" version="1"}%

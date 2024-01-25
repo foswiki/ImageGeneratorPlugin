@@ -1,0 +1,6 @@
+
+igp_*
+*,v
+ImageGeneratorPlugin_installer.pl
+ImageGeneratorPlugin.zip
+pub/System/ImageGeneratorPlugin/cache/picture-*
