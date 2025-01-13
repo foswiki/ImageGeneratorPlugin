@@ -8,7 +8,7 @@ $Foswiki::cfg{ImageGeneratorPlugin}{Secret} = '';
 
 # **STRING**
 # default font for images
-$Foswiki::cfg{ImageGeneratorPlugin}{Font} = 'Helvetica';
+$Foswiki::cfg{ImageGeneratorPlugin}{Font} = 'FreeSans';
 
 # **STRING**
 # default image type 

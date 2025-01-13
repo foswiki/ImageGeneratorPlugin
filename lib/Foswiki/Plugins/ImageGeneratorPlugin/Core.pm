@@ -1,6 +1,6 @@
 # Plugin for Foswiki - The Free and Open Source Wiki, https://foswiki.org/
 #
-# ImageGeneratorPlugin is Copyright (C) 2022-2024 Michael Daum http://michaeldaumconsulting.com
+# ImageGeneratorPlugin is Copyright (C) 2022-2025 Michael Daum http://michaeldaumconsulting.com
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -51,7 +51,7 @@ sub new {
   return $this;
 }
 
-sub DESTROY {
+sub finish {
   my $this = shift;
 
   undef $this->{session};
@@ -205,12 +205,14 @@ sub GENIMAGE {
   my $alt = $params->{alt} ? 'alt="'.$params->{alt}.'"' : "";
   my $style = $params->{style} ? 'style="'.$params->{style}.'"' : "";
   my $align = $params->{align} ? 'align="'.$params->{align}.'"' : "";
+  my $size = $params->{size} || $params->{width} . "x" . $params->{height};
 
   my $format = $params->{format} // '<img src="$url" width="$width" height="$height" $class $align $title $alt $style />';
 
   $format =~ s/\$url\b/$url/g;
   $format =~ s/\$width\b/$params->{width}/g;
   $format =~ s/\$height\b/$params->{height}/g;
+  $format =~ s/\$size\b/$size/g;
   $format =~ s/\$title\b/$title/g;
   $format =~ s/\$class\b/$className/g;
   $format =~ s/\$alt\b/$alt/g;
@@ -290,8 +292,23 @@ sub initParams {
   }
   $params->{label} = $label;
 
-  $params->{width} //= "150";
-  $params->{height} //= "150";
+  my $size = $params->{size};
+  if ($size) {
+    if ($size =~ /(\d+)x/) {
+      $params->{width} = $1;
+    } else {
+      $params->{width} ||= 150;
+    }
+    if ($size =~ /x(\d+)/) {
+      $params->{height} = $1;
+    } else {
+      $params->{height} ||= 150;
+    }
+  } else {
+    $params->{width} //= 150;
+    $params->{height} //= 150;
+    $params->{size} = $params->{width} . "x" . $params->{height};
+  }
 
   $params->{huefrom} //= $this->{hueFrom};
   $params->{hueto} //= $this->{hueTo};
@@ -331,9 +348,8 @@ sub render {
 
   my $e;
 
-  $e = $image->Set(
-    size => $params->{width} . "x" . $params->{height}
-  );
+
+  $e = $image->Set(size => $params->{size});
   throw Error::Simple($e) if $e;
 
   $e = $image->ReadImage("canvas:$bgColor");

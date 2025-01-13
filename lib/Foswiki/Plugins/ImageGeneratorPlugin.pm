@@ -1,6 +1,6 @@
 # Plugin for Foswiki - The Free and Open Source Wiki, https://foswiki.org/
 #
-# ImageGeneratorPlugin is Copyright (C) 2022-2024 Michael Daum http://michaeldaumconsulting.com
+# ImageGeneratorPlugin is Copyright (C) 2022-2025 Michael Daum http://michaeldaumconsulting.com
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -20,7 +20,7 @@ use warnings;
 
 use Foswiki::Func ();
 
-our $VERSION = '1.00';
+our $VERSION = '1.10';
 our $RELEASE = '%$RELEASE%';
 our $SHORTDESCRIPTION = 'Generates images from text';
 our $LICENSECODE = '%$LICENSECODE%';
@@ -59,6 +59,7 @@ sub getCore {
 }
 
 sub finishPlugin {
+  $core->finish() if defined $core;
   undef $core;
 }
 
