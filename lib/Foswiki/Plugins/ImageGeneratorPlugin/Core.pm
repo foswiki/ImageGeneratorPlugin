@@ -1,6 +1,6 @@
 # Plugin for Foswiki - The Free and Open Source Wiki, https://foswiki.org/
 #
-# ImageGeneratorPlugin is Copyright (C) 2022-2025 Michael Daum http://michaeldaumconsulting.com
+# ImageGeneratorPlugin is Copyright (C) 2022-2026 Michael Daum http://michaeldaumconsulting.com
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -105,7 +105,7 @@ sub validate {
 
 sub validateRequest {
   my ($this, $request) = @_;
-  
+
   my %params = ();
   foreach my $key ($request->param()) {
     $params{$key} = $request->param($key);
@@ -284,7 +284,10 @@ sub initParams {
     if ($from eq 'initials') {
       $label = "";
 
-      while ($params->{text} =~ /(\w+)\W*/g) {
+      my $text = $params->{text};
+      $text = Foswiki::Func::spaceOutWikiWord($text) unless $text =~ /\s/;
+
+      while ($text =~ /(\w+)\W*/g) {
         $label .= substr($1, 0, 1);
       }
       $label = uc($label);

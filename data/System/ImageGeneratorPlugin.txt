@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="ProjectContributor" comment="" date="1736756273" format="1.1"  version="1"}%
+%META:TOPICINFO{author="ProjectContributor" comment="" date="1773674070" format="1.1" version="1"}%
 ---+!! %TOPIC%
 %FORMFIELD{"Description"}%
 
@@ -116,6 +116,7 @@ The =format= parameter may contain the following variables:
 ---++ Change History
 
 %TABLE{columnwidths="7em" tablewidth="100%"}%
+|  26 Feb 2026 | space out wikiWords in "initials" mode if there is no space otherwise |
 |  13 Jan 2025 | added =size= parameter |
 |  25 Jan 2024 | initial release |
 
@@ -125,10 +126,10 @@ The =format= parameter may contain the following variables:
 %META:FIELD{name="Release" title="Release" value="%25$RELEASE%25"}%
 %META:FIELD{name="Description" title="Description" value="%25$SHORTDESCRIPTION%25"}%
 %META:FIELD{name="Repository" title="Repository" value="https://github.com/foswiki/%25$ROOTMODULE%25"}%
-%META:FIELD{name="Copyright" title="Copyright" value="2022-2025, Michael Daum, All Rights Reserved"}%
+%META:FIELD{name="Copyright" title="Copyright" value="2022-2026, Michael Daum, All Rights Reserved"}%
 %META:FIELD{name="License" title="License" value="GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]])"}%
 %META:FIELD{name="Home" title="Home" value="http://foswiki.org/Extensions/%25$ROOTMODULE%25"}%
 %META:FIELD{name="Support" title="Support" value="http://foswiki.org/Support/%25$ROOTMODULE%25"}%
-%META:FILEATTACHMENT{name="example1.jpeg" attachment="picture-c8faf1f5359c51573406349e7424e3ba.jpeg" attr="" comment="" date="1736756273" moveby="micha" movedto="System.ImageGeneratorPlugin.example1.jpeg" movedwhen="1665910912" movefrom="System.ImageGeneratorPlugin.picture-c8faf1f5359c51573406349e7424e3ba.jpeg" size="1379" user="ProjectContributor" version="1"}%
-%META:FILEATTACHMENT{name="example2.jpeg" attachment="example2.jpeg" attr="t" comment="" date="1736756273" size="46693" user="ProjectContributor" version="1"}%
-%META:FILEATTACHMENT{name="example3.jpeg" attachment="example3.jpeg" attr="" comment="" date="1736756273" size="2133" user="ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="example1.jpeg" attachment="picture-c8faf1f5359c51573406349e7424e3ba.jpeg" attr="" comment="" date="1773674070" moveby="micha" movedto="System.ImageGeneratorPlugin.example1.jpeg" movedwhen="1665910912" movefrom="System.ImageGeneratorPlugin.picture-c8faf1f5359c51573406349e7424e3ba.jpeg" size="1379" user="ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="example2.jpeg" attachment="example2.jpeg" attr="t" comment="" date="1773674070" size="46693" user="ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="example3.jpeg" attachment="example3.jpeg" attr="" comment="" date="1773674070" size="2133" user="ProjectContributor" version="1"}%
