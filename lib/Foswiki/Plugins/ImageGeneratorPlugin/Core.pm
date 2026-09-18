@@ -317,13 +317,13 @@ sub initParams {
   $params->{hueto} //= $this->{hueTo};
   $params->{seed} //= $this->{seed};
   $params->{saturation} //= $this->{saturation};
-  $params->{saturation} = split(/\s*,\s*/, $params->{saturation}) unless ref($params->{saturation});
+  $params->{saturation} = [split(/\s*,\s*/, $params->{saturation})] unless ref($params->{saturation});
   $params->{lightness} //= $this->{lightness};
-  $params->{lightness} = split(/\s*,\s*/, $params->{lightness}) unless ref($params->{lightness});
+  $params->{lightness} = [split(/\s*,\s*/, $params->{lightness})] unless ref($params->{lightness});
   $params->{light} //= $this->{light};
-  $params->{light} = split(/\s*,\s*/, $params->{light}) unless ref($params->{light});
+  $params->{light} = [split(/\s*,\s*/, $params->{light})] unless ref($params->{light});
   $params->{dark} //= $this->{dark};
-  $params->{dark} = split(/\s*,\s*/, $params->{dark}) unless ref($params->{dark});
+  $params->{dark} = [split(/\s*,\s*/, $params->{dark})] unless ref($params->{dark});
   $params->{font} //= $this->{font};
   $params->{type} //= $this->{imageType};
   $params->{_inited} = 1;
@@ -340,7 +340,7 @@ sub render {
   $this->initParams($params);
 
   my $bgColor = _getHSL($params);
-  my $fgColor = _isLight(_hsl2rgb($bgColor)) ? $this->{dark} : $this->{light};
+  my $fgColor = _isLight(_hsl2rgb($bgColor)) ? $params->{dark} : $params->{light};
 
   $bgColor = _formatHSL($bgColor);
   $fgColor = _formatHSL($fgColor);

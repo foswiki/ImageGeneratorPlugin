@@ -20,7 +20,7 @@ use warnings;
 
 use Foswiki::Func ();
 
-our $VERSION = '2.00';
+our $VERSION = '2.01';
 our $RELEASE = '%$RELEASE%';
 our $SHORTDESCRIPTION = 'Generates images from text';
 our $LICENSECODE = '%$LICENSECODE%';
